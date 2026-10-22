@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sop-assistant"
+version = "1.0.0"
+description = "Grounded, citable Q&A over operational SOP PDFs (Qdrant hybrid search)"
+requires-python = ">=3.10"
+dependencies = [
+  "pymupdf>=1.24.3",
+  "pytesseract>=0.3.10",
+  "pillow>=10",
+  "numpy>=1.26",
+  "qdrant-client>=1.10",
+  "fastembed>=0.4",
+  "PySastrawi>=1.2",
+  "openai>=1.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
