@@ -9,25 +9,25 @@ Konfigurasi: embedding=hash, llm=qwen2.5:3b-instruct
 
 | ID | Kategori | Harapan → Hasil | Ditemukan | Dikutip | Fakta |
 |---|---|---|---|---|---|
-| Q01 | answerable | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q02 | answerable | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q03 | answerable | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q04 | answerable | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q05 | answerable (2-kolom, kolom kanan) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q06 | answerable (scan + 2-kolom, kolom kanan) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q07 | answerable (scan) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q08 | ambigu / lintas dokumen | answered/partial → answered ✅ | ✅ | ✅ | ❌ |
-| Q09 | ambigu (kurang spesifik) | answered/partial → answered ✅ | ✅ | ✅ | ❌ |
-| Q10 | jebakan (mirip tapi beda) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q11 | lintas dokumen | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q12 | jebakan (mirip tapi beda) | answered → not_found ❌ | ✅ | ❌ | ❌ |
-| Q13 | sinonim / serapan | answered → answered ✅ | ✅ | ✅ | ✅ |
-| Q14 | di luar cakupan | not_found → not_found ✅ | - | - | - |
-| Q15 | di luar cakupan | not_found → not_found ✅ | - | - | - |
-| Q16 | di luar cakupan (jauh) | not_found → not_found ✅ | - | - | - |
-| Q17 | jebakan (entitas tidak ada) | not_found/partial → not_found ✅ | - | - | - |
-| Q18 | jebakan (info tidak tercantum) | not_found/partial → answered ❌ | - | - | - |
-| Q19 | jebakan (topik dekat) | not_found/partial → not_found ✅ | - | - | - |
+| Q01 | answerable | answered → answered (benar) | ya | ya | ya |
+| Q02 | answerable | answered → answered (benar) | ya | ya | ya |
+| Q03 | answerable | answered → answered (benar) | ya | ya | ya |
+| Q04 | answerable | answered → answered (benar) | ya | ya | ya |
+| Q05 | answerable (2-kolom, kolom kanan) | answered → answered (benar) | ya | ya | ya |
+| Q06 | answerable (scan + 2-kolom, kolom kanan) | answered → answered (benar) | ya | ya | ya |
+| Q07 | answerable (scan) | answered → answered (benar) | ya | ya | ya |
+| Q08 | ambigu / lintas dokumen | answered/partial → answered (benar) | ya | ya | tidak |
+| Q09 | ambigu (kurang spesifik) | answered/partial → answered (benar) | ya | ya | tidak |
+| Q10 | jebakan (mirip tapi beda) | answered → answered (benar) | ya | ya | ya |
+| Q11 | lintas dokumen | answered → answered (benar) | ya | ya | ya |
+| Q12 | jebakan (mirip tapi beda) | answered → not_found (salah) | ya | tidak | tidak |
+| Q13 | sinonim / serapan | answered → answered (benar) | ya | ya | ya |
+| Q14 | di luar cakupan | not_found → not_found (benar) | - | - | - |
+| Q15 | di luar cakupan | not_found → not_found (benar) | - | - | - |
+| Q16 | di luar cakupan (jauh) | not_found → not_found (benar) | - | - | - |
+| Q17 | jebakan (entitas tidak ada) | not_found/partial → not_found (benar) | - | - | - |
+| Q18 | jebakan (info tidak tercantum) | not_found/partial → answered (salah) | - | - | - |
+| Q19 | jebakan (topik dekat) | not_found/partial → not_found (benar) | - | - | - |
 
 ## Set holdout
 - Status benar: 7/8
@@ -36,14 +36,14 @@ Konfigurasi: embedding=hash, llm=qwen2.5:3b-instruct
 
 | ID | Kategori | Harapan → Hasil | Ditemukan | Dikutip | Fakta |
 |---|---|---|---|---|---|
-| H01 | holdout answerable | answered → answered ✅ | ✅ | ✅ | ✅ |
-| H02 | holdout answerable (scan) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| H03 | holdout answerable (2-kolom) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| H04 | holdout answerable (scan) | answered → answered ✅ | ✅ | ✅ | ✅ |
-| H05 | holdout lintas dokumen | answered/partial → not_found ❌ | ✅ | ❌ | ❌ |
-| H06 | holdout luar cakupan | not_found → not_found ✅ | - | - | - |
-| H07 | holdout luar cakupan (kosakata dekat) | not_found → not_found ✅ | - | - | - |
-| H08 | holdout luar cakupan (kosakata dekat) | not_found/partial → not_found ✅ | - | - | - |
+| H01 | holdout answerable | answered → answered (benar) | ya | ya | ya |
+| H02 | holdout answerable (scan) | answered → answered (benar) | ya | ya | ya |
+| H03 | holdout answerable (2-kolom) | answered → answered (benar) | ya | ya | ya |
+| H04 | holdout answerable (scan) | answered → answered (benar) | ya | ya | ya |
+| H05 | holdout lintas dokumen | answered/partial → not_found (salah) | ya | tidak | tidak |
+| H06 | holdout luar cakupan | not_found → not_found (benar) | - | - | - |
+| H07 | holdout luar cakupan (kosakata dekat) | not_found → not_found (benar) | - | - | - |
+| H08 | holdout luar cakupan (kosakata dekat) | not_found/partial → not_found (benar) | - | - | - |
 
 ## Jawaban lengkap
 

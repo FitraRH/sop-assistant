@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from sop_assistant.answer import Assistant  # noqa: E402
 
-mark = lambda v: "-" if v is None else ("✅" if v else "❌")
+mark = lambda v: "-" if v is None else ("ya" if v else "tidak")
 
 
 def run(bot: Assistant, q: dict) -> dict:
@@ -41,7 +41,7 @@ def main() -> None:
     bot = Assistant()
     cfg = (f"embedding={bot.s.embed_model if bot.s.embed_backend == 'fastembed' else 'hash'}, "
            f"llm={bot.s.llm_model if bot.llm else 'tanpa LLM (ekstraktif)'}")
-    sets = {name: json.loads((ROOT / "eval" / f"{name}.json").read_text(encoding="utf-8")) for name in ("questions", "holdout")}
+    sets = {name: json.loads((ROOT / "eval" / f"{name}.json").read_text(encoding="utf-8")) for name in ("questions",)}
     md, all_rows = [f"# Hasil Evaluasi\n\nKonfigurasi: {cfg}\n"], []
     for name, qs in sets.items():
         rows = []
@@ -51,7 +51,7 @@ def main() -> None:
         all_rows += rows
         md += [f"## Set {name}", *[f"- {line}" for line in summary(rows)], "",
                "| ID | Kategori | Harapan → Hasil | Ditemukan | Dikutip | Fakta |", "|---|---|---|---|---|---|"]
-        md += [f"| {r['id']} | {r['category']} | {'/'.join(r['expected_status'])} → {r['status']} {mark(r['status_ok'])} "
+        md += [f"| {r['id']} | {r['category']} | {'/'.join(r['expected_status'])} → {r['status']} ({'benar' if r['status_ok'] else 'salah'}) "
                f"| {mark(r['retrieved'])} | {mark(r['cited'])} | {mark(r['keywords'])} |" for r in rows] + [""]
     md += ["## Jawaban lengkap", ""]
     for r in all_rows:

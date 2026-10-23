@@ -1,42 +1,421 @@
 [
- {"id":"Q01","category":"answerable","question":"Berapa target respons awal untuk tiket P1?",
-  "expected_status":["answered"],"expected_sources":[["KB_01_Penanganan_Tiket_Layanan.pdf","4"]],"must_contain":["15 menit"]},
- {"id":"Q02","category":"answerable","question":"Apa saja status tiket yang digunakan?",
-  "expected_status":["answered"],"expected_sources":[["KB_01_Penanganan_Tiket_Layanan.pdf","6"]],"must_contain":["Menunggu Pihak Ketiga"]},
- {"id":"Q03","category":"answerable","question":"Paling lambat kapan sebuah keluhan harus diakui setelah diterima?",
-  "expected_status":["answered"],"expected_sources":[["KB_02_Pengelolaan_Keluhan_Pelanggan.pdf","4"]],"must_contain":["satu hari kerja"]},
- {"id":"Q04","category":"answerable","question":"Kapan jam layanan reguler beroperasi?",
-  "expected_status":["answered"],"expected_sources":[["KB_03_Panduan_Operasional_Layanan.pdf","1"]],"must_contain":["09.00-17.00"]},
- {"id":"Q05","category":"answerable (2-kolom, kolom kanan)","question":"Apa yang harus dilakukan jika sistem tiket tidak tersedia?",
-  "expected_status":["answered"],"expected_sources":[["KB_03_Panduan_Operasional_Layanan.pdf","8"]],"must_contain":["formulir sementara"]},
- {"id":"Q06","category":"answerable (scan + 2-kolom, kolom kanan)","question":"Kapan tiket bisa ditutup, dan apa pengecualian untuk P1?",
-  "expected_status":["answered"],"expected_sources":[["KB_01_Penanganan_Tiket_Layanan.pdf","7"]],"must_contain":["dua hari kerja","P1"]},
- {"id":"Q07","category":"answerable (scan)","question":"Berapa batas waktu penyusunan tinjauan pascainsiden?",
-  "expected_status":["answered"],"expected_sources":[["KB_04_Eskalasi_dan_Insiden.pdf","8"]],"must_contain":["lima hari kerja"]},
- {"id":"Q08","category":"ambigu / lintas dokumen","question":"Berapa menit sekali update harus diberikan saat ada gangguan?",
-  "expected_status":["answered","partial"],
-  "expected_sources":[["KB_03_Panduan_Operasional_Layanan.pdf","4"],["KB_04_Eskalasi_dan_Insiden.pdf","5"]],"must_contain":["30 menit","20 menit"]},
- {"id":"Q09","category":"ambigu (kurang spesifik)","question":"Berapa lama waktu respons?",
-  "expected_status":["answered","partial"],"expected_sources":[["KB_01_Penanganan_Tiket_Layanan.pdf","4"]],"must_contain":["15 menit","1 jam"]},
- {"id":"Q10","category":"jebakan (mirip tapi beda)","question":"Apakah keluhan berulang otomatis menjadi insiden P1?",
-  "expected_status":["answered"],"expected_sources":[["KB_02_Pengelolaan_Keluhan_Pelanggan.pdf","6"]],"must_contain":["tidak otomatis"]},
- {"id":"Q11","category":"lintas dokumen","question":"Jika ada dugaan kebocoran data, apa yang harus dilakukan?",
-  "expected_status":["answered"],
-  "expected_sources":[["KB_04_Eskalasi_dan_Insiden.pdf","6"],["KB_01_Penanganan_Tiket_Layanan.pdf","8"]],"must_contain":["kanal keamanan"]},
- {"id":"Q12","category":"jebakan (mirip tapi beda)","question":"Kalau insiden sudah pulih, apakah semua tiket pelanggan otomatis ditutup?",
-  "expected_status":["answered"],"expected_sources":[["KB_04_Eskalasi_dan_Insiden.pdf","7"]],"must_contain":["tidak otomatis"]},
- {"id":"Q13","category":"sinonim / serapan","question":"Apakah petugas boleh menjanjikan refund ke pelanggan?",
-  "expected_status":["answered"],"expected_sources":[["KB_02_Pengelolaan_Keluhan_Pelanggan.pdf","7"]],"must_contain":["tidak boleh"]},
- {"id":"Q14","category":"di luar cakupan","question":"Berapa gaji petugas layanan?",
-  "expected_status":["not_found"],"expected_sources":[],"must_contain":[]},
- {"id":"Q15","category":"di luar cakupan","question":"Bagaimana prosedur pengajuan cuti karyawan?",
-  "expected_status":["not_found"],"expected_sources":[],"must_contain":[]},
- {"id":"Q16","category":"di luar cakupan (jauh)","question":"Siapa presiden Indonesia saat ini?",
-  "expected_status":["not_found"],"expected_sources":[],"must_contain":[]},
- {"id":"Q17","category":"jebakan (entitas tidak ada)","question":"Berapa target respons awal untuk tiket P5?",
-  "expected_status":["not_found","partial"],"expected_sources":[],"must_contain":[]},
- {"id":"Q18","category":"jebakan (info tidak tercantum)","question":"Berapa lama batas waktu penyelesaian (resolusi) tiket P1?",
-  "expected_status":["not_found","partial"],"expected_sources":[],"must_contain":[]},
- {"id":"Q19","category":"jebakan (topik dekat)","question":"Bagaimana cara mereset password akun pelanggan?",
-  "expected_status":["not_found","partial"],"expected_sources":[],"must_contain":[]}
+ {
+  "id": "Q01",
+  "category": "answerable",
+  "question": "Berapa target respons awal untuk tiket P1?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_01_Penanganan_Tiket_Layanan.pdf",
+    "4"
+   ]
+  ],
+  "must_contain": [
+   "15 menit"
+  ]
+ },
+ {
+  "id": "Q02",
+  "category": "answerable",
+  "question": "Apa saja status tiket yang digunakan?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_01_Penanganan_Tiket_Layanan.pdf",
+    "6"
+   ]
+  ],
+  "must_contain": [
+   "Menunggu Pihak Ketiga"
+  ]
+ },
+ {
+  "id": "Q03",
+  "category": "answerable",
+  "question": "Paling lambat kapan sebuah keluhan harus diakui setelah diterima?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_02_Pengelolaan_Keluhan_Pelanggan.pdf",
+    "4"
+   ]
+  ],
+  "must_contain": [
+   "satu hari kerja"
+  ]
+ },
+ {
+  "id": "Q04",
+  "category": "answerable",
+  "question": "Kapan jam layanan reguler beroperasi?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_03_Panduan_Operasional_Layanan.pdf",
+    "1"
+   ]
+  ],
+  "must_contain": [
+   "09.00-17.00"
+  ]
+ },
+ {
+  "id": "Q05",
+  "category": "answerable (2-kolom, kolom kanan)",
+  "question": "Apa yang harus dilakukan jika sistem tiket tidak tersedia?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_03_Panduan_Operasional_Layanan.pdf",
+    "8"
+   ]
+  ],
+  "must_contain": [
+   "formulir sementara"
+  ]
+ },
+ {
+  "id": "Q06",
+  "category": "answerable (scan + 2-kolom, kolom kanan)",
+  "question": "Kapan tiket bisa ditutup, dan apa pengecualian untuk P1?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_01_Penanganan_Tiket_Layanan.pdf",
+    "7"
+   ]
+  ],
+  "must_contain": [
+   "dua hari kerja",
+   "P1"
+  ]
+ },
+ {
+  "id": "Q07",
+  "category": "answerable (scan)",
+  "question": "Berapa batas waktu penyusunan tinjauan pascainsiden?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "8"
+   ]
+  ],
+  "must_contain": [
+   "lima hari kerja"
+  ]
+ },
+ {
+  "id": "Q08",
+  "category": "ambigu / lintas dokumen",
+  "question": "Berapa menit sekali update harus diberikan saat ada gangguan?",
+  "expected_status": [
+   "answered",
+   "partial"
+  ],
+  "expected_sources": [
+   [
+    "KB_03_Panduan_Operasional_Layanan.pdf",
+    "4"
+   ],
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "5"
+   ]
+  ],
+  "must_contain": [
+   "30 menit",
+   "20 menit"
+  ]
+ },
+ {
+  "id": "Q09",
+  "category": "ambigu (kurang spesifik)",
+  "question": "Berapa lama waktu respons?",
+  "expected_status": [
+   "answered",
+   "partial"
+  ],
+  "expected_sources": [
+   [
+    "KB_01_Penanganan_Tiket_Layanan.pdf",
+    "4"
+   ]
+  ],
+  "must_contain": [
+   "15 menit",
+   "1 jam"
+  ]
+ },
+ {
+  "id": "Q10",
+  "category": "jebakan (mirip tapi beda)",
+  "question": "Apakah keluhan berulang otomatis menjadi insiden P1?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_02_Pengelolaan_Keluhan_Pelanggan.pdf",
+    "6"
+   ]
+  ],
+  "must_contain": [
+   "tidak otomatis"
+  ]
+ },
+ {
+  "id": "Q11",
+  "category": "lintas dokumen",
+  "question": "Jika ada dugaan kebocoran data, apa yang harus dilakukan?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "6"
+   ],
+   [
+    "KB_01_Penanganan_Tiket_Layanan.pdf",
+    "8"
+   ]
+  ],
+  "must_contain": [
+   "kanal keamanan"
+  ]
+ },
+ {
+  "id": "Q12",
+  "category": "jebakan (mirip tapi beda)",
+  "question": "Kalau insiden sudah pulih, apakah semua tiket pelanggan otomatis ditutup?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "7"
+   ]
+  ],
+  "must_contain": [
+   "tidak otomatis"
+  ]
+ },
+ {
+  "id": "Q13",
+  "category": "sinonim / serapan",
+  "question": "Apakah petugas boleh menjanjikan refund ke pelanggan?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_02_Pengelolaan_Keluhan_Pelanggan.pdf",
+    "7"
+   ]
+  ],
+  "must_contain": [
+   "tidak boleh"
+  ]
+ },
+ {
+  "id": "Q14",
+  "category": "di luar cakupan",
+  "question": "Berapa gaji petugas layanan?",
+  "expected_status": [
+   "not_found"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "Q15",
+  "category": "di luar cakupan",
+  "question": "Bagaimana prosedur pengajuan cuti karyawan?",
+  "expected_status": [
+   "not_found"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "Q16",
+  "category": "di luar cakupan (jauh)",
+  "question": "Siapa presiden Indonesia saat ini?",
+  "expected_status": [
+   "not_found"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "Q17",
+  "category": "jebakan (entitas tidak ada)",
+  "question": "Berapa target respons awal untuk tiket P5?",
+  "expected_status": [
+   "not_found",
+   "partial"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "Q18",
+  "category": "jebakan (info tidak tercantum)",
+  "question": "Berapa lama batas waktu penyelesaian (resolusi) tiket P1?",
+  "expected_status": [
+   "not_found",
+   "partial"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "Q19",
+  "category": "jebakan (topik dekat)",
+  "question": "Bagaimana cara mereset password akun pelanggan?",
+  "expected_status": [
+   "not_found",
+   "partial"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "H01",
+  "category": "holdout answerable",
+  "question": "Siapa yang menetapkan PIC utama jika penyelesaian keluhan butuh keputusan lintas tim?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_02_Pengelolaan_Keluhan_Pelanggan.pdf",
+    "5"
+   ]
+  ],
+  "must_contain": [
+   "koordinator layanan"
+  ]
+ },
+ {
+  "id": "H02",
+  "category": "holdout answerable (scan)",
+  "question": "Apa tugas koordinator insiden?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "4"
+   ]
+  ],
+  "must_contain": [
+   "memimpin"
+  ]
+ },
+ {
+  "id": "H03",
+  "category": "holdout answerable (2-kolom)",
+  "question": "Bolehkah berkas pelanggan dibagikan lewat tautan publik?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_03_Panduan_Operasional_Layanan.pdf",
+    "6"
+   ]
+  ],
+  "must_contain": [
+   "tidak boleh"
+  ]
+ },
+ {
+  "id": "H04",
+  "category": "holdout answerable (scan)",
+  "question": "Dalam berapa menit SEV2 harus dieskalasikan?",
+  "expected_status": [
+   "answered"
+  ],
+  "expected_sources": [
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "3"
+   ]
+  ],
+  "must_contain": [
+   "30 menit"
+  ]
+ },
+ {
+  "id": "H05",
+  "category": "holdout lintas dokumen",
+  "question": "Apa bedanya tingkat P2 dengan SEV2?",
+  "expected_status": [
+   "answered",
+   "partial"
+  ],
+  "expected_sources": [
+   [
+    "KB_01_Penanganan_Tiket_Layanan.pdf",
+    "3"
+   ],
+   [
+    "KB_04_Eskalasi_dan_Insiden.pdf",
+    "2"
+   ]
+  ],
+  "must_contain": [
+   "fungsi penting",
+   "layanan utama"
+  ]
+ },
+ {
+  "id": "H06",
+  "category": "holdout luar cakupan",
+  "question": "Bagaimana cara memesan tiket pesawat untuk perjalanan dinas?",
+  "expected_status": [
+   "not_found"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "H07",
+  "category": "holdout luar cakupan (kosakata dekat)",
+  "question": "Berapa biaya lisensi sistem tiket yang dipakai petugas?",
+  "expected_status": [
+   "not_found"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ },
+ {
+  "id": "H08",
+  "category": "holdout luar cakupan (kosakata dekat)",
+  "question": "Siapa nama koordinator insiden saat ini?",
+  "expected_status": [
+   "not_found",
+   "partial"
+  ],
+  "expected_sources": [],
+  "must_contain": []
+ }
 ]

@@ -1,34 +1,37 @@
 # Catatan Evaluasi
 
-27 soal: `eval/questions.json` (19, dipakai saat menyetel) dan `eval/holdout.json` (8, ditulis setelahnya, tidak dipakai menyetel). `python eval/run_eval.py` menulis `eval/results.md` beserta konfigurasi yang dipakai. Isi soal: bisa dijawab, ambigu, lintas dokumen, jebakan "mirip tapi beda", dan di luar cakupan.
+27 soal di `eval/questions.json` (Q01-Q19 dan H01-H08). Semuanya sudah terlihat saat saya mengembangkan sistem, jadi hasil ini bukan uji independen. Konfigurasi: LLM Qwen2.5 3B (Ollama, lokal), embedding hash (model multilingual-e5 belum diuji). Daftar lengkap pertanyaan dan jawaban ada di `DEMO.md`, hasil otomatis di `eval/results.md`.
 
 ## Hasil
 
 | Run | Status benar | Bagian benar dikutip (18 soal berjawaban) | Di luar cakupan ditolak (9) |
 |---|---|---|---|
 | 1. Qwen2.5 3B, bukti berupa kutipan teks | 20/27 | 10/18 | 9/9 |
-| 2. Qwen2.5 3B, bukti berupa id kalimat | isi setelah menjalankan ulang | | |
+| 2. Qwen2.5 3B, bukti berupa id kalimat (final) | 24/27 | 16/18 | 8/9 |
 | Tanpa LLM (offline, embedding hash) | 26/27 | 18/18 | 8/9 |
 
-Bagian yang benar selalu masuk 6 hasil teratas pencarian (18/18) pada semua run.
+Mode tanpa LLM skornya lebih tinggi karena hanya menampilkan potongan dokumen, tidak menyusun jawaban, jadi tidak setara. Bagian yang benar selalu masuk 6 hasil teratas pencarian (18/18).
+
+Penilaian manual pada run 2 (lihat DEMO.md): dari 18 pertanyaan berjawaban, 12 benar penuh, 3 benar tapi kurang lengkap, 3 salah. Dari 9 pertanyaan di luar cakupan, 8 ditolak dengan benar.
 
 ## Berjalan baik
 
-- Pencarian: PDF scan, dua kolom, dan kolom kanan terbaca benar dan ditemukan.
-- Tidak ada jawaban karangan di luar cakupan pada run dengan LLM: gaji, cuti, kode P5, waktu resolusi, dan reset password semuanya ditolak.
-- Pengecekan bukti menahan jawaban tak berdasar. Pertanyaan waktu resolusi P1 (Q18, dokumen hanya mengatur respons awal) dijawab keliru tanpa LLM, tetapi ditolak pada run dengan LLM.
+- Pencarian: PDF scan, dua kolom, dan kolom kanan terbaca benar dan ditemukan (18/18).
+- Pertanyaan di luar topik (cuti, tiket pesawat) dan kode yang tidak ada (P5) ditolak sebelum masuk LLM.
+- Mengganti bukti dari kutipan teks menjadi id kalimat menurunkan penolakan keliru dari 7 menjadi 2.
+- Salah ketik dan istilah tidak baku ("refund", "update") tetap dijawab benar.
 
 ## Gagal atau kurang baik
 
-- **Penolakan keliru (run 1):** 7 dari 18 pertanyaan yang jawabannya ada ditolak (Q02, Q09, Q11, Q12, H02, H04, H05), semua dengan alasan "bukti tidak terverifikasi". Pencarian benar, yang gagal adalah verifikasi: model 3B sulit menyalin kutipan persis. Perbaikannya (id kalimat, run 2) belum terbukti sampai dijalankan ulang.
-- **Sitasi tidak mendukung jawaban (H01):** jawaban benar ("koordinator layanan") tetapi mengutip KB_04 §4, bukan KB_02 §5. Pengecekan hanya memastikan kutipan ada di dokumen, bukan bahwa ia menjawab.
-- **Jawaban terlalu singkat (Q08, Q09):** hanya "30 menit", tidak menyebut aturan SEV1 (20 menit) atau semua tingkat prioritas.
-- **Tanpa LLM:** Q18 dijawab keliru dan Q08 hanya menampilkan satu dari dua aturan. Penyebab: gate berbasis kata tidak membedakan "respons" dari "resolusi".
-- Set utama ikut dipakai menyetel sistem (sinonim, gate kode), jadi angkanya lebih optimis daripada holdout. Holdout hanya 8 soal.
+- **Jawaban karangan (Q18):** "2 hari kerja" untuk waktu penyelesaian P1, padahal dokumen hanya mengatur respons awal. Angka itu tampaknya dari aturan penutupan tiket. Pada run 1 kasus ini tertahan, pada run 2 lolos karena pengecekan bukti hanya memeriksa angka 2 digit ke atas dan tidak memastikan kalimat bukti benar-benar menjawab. Perbaikan yang menurunkan penolakan keliru ikut membuka celah ini.
+- **Tidak menjawab (Q09):** "Berapa lama waktu respons?" dijawab dengan arti respons awal, bukan waktunya per prioritas.
+- **Kurang lengkap (Q05, Q08, Q11):** model 3B cenderung ringkas, misalnya hanya menyebut aturan P1 (30 menit) dan tidak SEV1 (20 menit).
+- **Penolakan keliru (Q12, H05):** model menilai dokumen tidak memuat jawaban yang sebenarnya ada.
+- Embedding hash lemah secara makna, model multilingual-e5 belum diuji, dan tidak ada uji independen.
 
 ## Prioritas perbaikan
 
-1. Jalankan ulang dengan model lebih besar (API) agar jawaban lebih lengkap, dan ukur run 2.
-2. Pemeriksa apakah kalimat bukti benar-benar menjawab (NLI atau LLM-judge) untuk menutup kasus seperti H01.
-3. Perbanyak soal uji dan pisahkan set penyetelan dari set uji.
+1. Pemeriksa apakah kalimat bukti benar-benar menjawab pertanyaan (NLI atau LLM-judge), dan cek angka satu digit. Ini menutup kasus Q18.
+2. Model lebih besar lewat API dan embedding e5-large, lalu ukur ulang.
+3. Soal uji baru yang benar-benar terpisah dari proses pengembangan.
 4. Dukungan tabel dan PDF multi-halaman, serta skor kepercayaan OCR.

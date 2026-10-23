@@ -59,7 +59,8 @@ Pertanyaan ─► hybrid search (RRF) ─► rerank kata ─► gate ─► LLM 
 ## Keterbatasan
 
 - PDF contoh satu halaman, jadi sitasi selalu "hlm. 1". Pembeda sumbernya nomor bagian.
-- Pengecekan bukti hanya memastikan id ada dan angka (2 digit ke atas) muncul di bukti. Ia tidak membuktikan kalimat bukti benar-benar menjawab pertanyaan.
+- Pengecekan bukti hanya memastikan id ada dan angka (2 digit ke atas) muncul di bukti. Ia tidak membuktikan kalimat bukti benar-benar menjawab pertanyaan. Contoh nyata: Q18 dijawab "2 hari kerja" padahal dokumen tidak mengatur waktu penyelesaian.
+- Hasil uji memakai embedding hash dan Qwen2.5 3B. Model multilingual-e5-large belum diuji.
 - Gate berbasis kata: salah ketik atau sinonim yang belum dipetakan bisa ditolak di mode tanpa LLM.
 - OCR bisa salah baca kode pendek ("P1" jadi "Pl"). Sudah ditambal, pola lain mungkin ada.
 - Belum ada tabel, memori percakapan, dan ingest inkremental.
